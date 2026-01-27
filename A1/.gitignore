@@ -1,0 +1,17 @@
+cat > .gitignore << 'EOF'
+# ---- LARGE EMBEDDINGS (DO NOT PUSH) ----
+glove.6B/
+*.zip
+
+# ---- TRAINED MODELS ----
+model/
+*.pth
+*.pt
+*.pkl
+
+# ---- PYTHON / JUPYTER ----
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.DS_Store
+EOF
