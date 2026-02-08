@@ -29,7 +29,6 @@ After tokenization, vocabularies were built using **build_vocab_from_iterator**,
 
 ## **Experiment with Attention Mechanism (Final Epoch Results)**
 
-
 | **Attention Variant** | **Training Loss** | **Training PPL** | **Validation Loss** | **Validation PPL** |
 | --------------------------- | ----------------------- | ---------------------- | ------------------------- | ------------------------ |
 | General                     | 8.958                   | 7773.531               | 8.951                     | 7719.025                 |
@@ -48,13 +47,26 @@ Although additive attention requires significantly higher computational time per
 | General                     | 89.15                                | 0.57                                  | 0.0078 seconds           | 45.11                     | 8.954               | 7737.279                  |
 | Additive                    | 407.53                               | 2.60                                  | 0.0047 seconds           | 45.11                     | 8.904               | 7361.088                  |
 
-
 All models have the same size of **45.11 MB**, indicating that the choice of attention mechanism does not affect the number of learnable parameters. In terms of computational efficiency:
 
 * **General Attention** trains significantly faster.
 * **Additive Attention** is slower during training but achieves better test performance.
 
 During inference, both mechanisms have very low latency. Interestingly, additive attention achieves slightly faster inference time, suggesting that once trained, it can generate translations efficiently.
+
+## **Training & Validation Loss Analysis**
+
+#### General Attention
+
+The general attention model also demonstrates a gradual reduction in training and validation loss, but the improvement is more modest compared to additive attention. The gap between training and validation loss remains small, indicating stable learning; however, the overall loss values remain slightly higher. This suggests that while general attention is computationally efficient, it may be less expressive in capturing complex token relationships.
+
+![Training and Validation Loss for General Attention](general.png)
+
+#### Additive Attention
+
+The additive attention model shows a consistent decrease in both training and validation loss across epochs. The validation loss decreases slightly faster than the training loss, indicating good generalization and no immediate signs of overfitting. This steady downward trend suggests that the additive attention mechanism is learning meaningful alignments between English and Nepali tokens, albeit with slower convergence due to its higher computational complexity.
+
+![Training and Validation Loss for General Attention](additive.png)
 
 ## **Analysis of Results**
 
